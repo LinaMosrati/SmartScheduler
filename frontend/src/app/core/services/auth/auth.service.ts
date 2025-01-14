@@ -50,7 +50,7 @@ export class AuthService {
           localStorage.setItem('token', response.token);
           this.currentUser.set(response.user);
           this.openSnackBar('Logged in successfully');
-          this.router.navigate(['/user','profile']);
+          this.router.navigate(['/']);
         }),
         catchError((error) => {
           // console.log(error.status);
@@ -83,7 +83,7 @@ export class AuthService {
     localStorage.removeItem('token');
     this.currentUser.set(null);
     this.openSnackBar('Logged out');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   register(user: FormData) {

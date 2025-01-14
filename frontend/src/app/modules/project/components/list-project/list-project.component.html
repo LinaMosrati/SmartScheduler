@@ -19,6 +19,9 @@
   </button>
   
   <div class="task-list">
+    <div *ngIf="paginatedProjects.length == 0" class="no-task">
+      <p>No Project</p>
+    </div>
     <div *ngFor="let project of paginatedProjects" class="task-card">
       <div class="task-name">{{ project.name }}</div>
       <div class="task-description">{{ project.description }}</div>
@@ -40,6 +43,12 @@
           <span class="info-label">End Date:</span>
           <span class="info-value">{{ project.endDate | date: 'MMM d, y' }}</span>
         </div>
+        <div class="info-row">
+          <span class="info-label">Role:</span>
+          <b>
+          <span class="info-value" [ngStyle]="{'color': roleColors[getRole(project.id!)]}">{{getRole(project.id!) }}</span>
+        </b>
+        </div>
       </div>
   
       <mat-divider></mat-divider>
@@ -48,10 +57,10 @@
         <button mat-icon-button class="view-button" *ngIf="project.id" (click)="onViewProject(project.id)">
           <mat-icon>visibility</mat-icon>
         </button>
-        <button mat-icon-button class="update-button" *ngIf="project.id" (click)="onUpdateProject(project.id)">
+        <button mat-icon-button class="update-button" *ngIf="project.id && isOwner(project.id)" (click)="onUpdateProject(project.id)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button class="delete-button" *ngIf="project.id" (click)="confirmDelete(project.id)">
+        <button mat-icon-button class="delete-button" *ngIf="project.id && isOwner(project.id)" (click)="confirmDelete(project.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>

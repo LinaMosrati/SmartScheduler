@@ -39,6 +39,6 @@ export class AppComponent {
   // Logout the user
   logout(): void {
     this.authService.logout(); // Ensure this method clears the session
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }

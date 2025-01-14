@@ -1,0 +1,32 @@
+.resource-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.resource-card {
+  flex: 1 1 calc(25% - 16px); /* Take up 25% of the row width, minus the gap */
+  min-width: 200px; /* Ensure a minimum width for smaller screens */
+  max-width: 300px;
+  background: #3b2d38;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  h3 {
+    margin-top: 0;
+    color: #3f51b5;
+  }
+
+  p {
+    margin: 8px 0;
+  }
+}

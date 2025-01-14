@@ -1,0 +1,61 @@
+.invite-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #161215;
+    padding: 16px;
+  }
+  
+  .invite-card,
+  .loading-card {
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #3b2d38;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  
+  .loading-spinner p {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .expired-message {
+    text-align: center;
+  }
+  
+  .expired-title {
+    color: #ff5252;
+  }
+  
+  .invite-title {
+    color: #1976d2;
+  }
+  
+  mat-card-content p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+  }
+  
+  button {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  

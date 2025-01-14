@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Edit Project Member</h2>
+<mat-dialog-content>
+  <p><strong>Name:</strong> {{ user?.firstName }} {{ user?.lastName }}</p>
+  <p><strong>Email:</strong> {{ user?.email }}</p>
+  <p><strong>Contact:</strong> {{ user?.contact }} </p>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Role</mat-label>
+    <mat-select [(value)]="updatedRole">
+      <mat-option *ngFor="let role of availableRoles" [value]="role">
+        {{ role }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions >
+  <button mat-button (click)="onRemove()">Remove</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+</mat-dialog-actions>

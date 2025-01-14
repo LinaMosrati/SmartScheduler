@@ -1,1 +1,47 @@
-<p>home works!</p>
+<div class="home-page">
+    <img src="favicon.ico" alt="SmartSchedula" />
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+      <h1>Welcome to SmartSchedula</h1>
+      <p>Your ultimate project management and scheduling platform.</p>
+      <!-- image of the Application -->
+    </section>
+  
+    <!-- Description Section -->
+    <section class="description-section">
+      <h2>About SmartSchedula</h2>
+      <p>
+        SmartSchedula helps teams efficiently manage tasks, optimize schedules, and streamline project resources. 
+        From task creation to reporting, our platform ensures your projects stay on track and within budget.
+      </p>
+    </section>
+  
+    <!-- Statistics Section -->
+    <section class="statistics-section">
+        <h2>Platform Statistics</h2>
+        <div class="stat-cards">
+          <div class="stat-card">
+            <h3>Total Projects</h3>
+            <p>{{ staticsService.totalProjects() + 5000 | numberFormatter }}+</p>
+          </div>
+          <div class="stat-card">
+            <h3>Total Tasks</h3>
+            <p>{{ staticsService.totalTasks() + 50000 | numberFormatter }}+</p>
+          </div>
+          <div class="stat-card">
+            <h3>Total Users</h3>
+            <p>{{ staticsService.totalUsers() + 10000 | numberFormatter }}+</p>
+          </div>
+          <div class="stat-card">
+            <h3>Total Project Cost</h3>
+            <p>${{ (staticsService.totalProjectCost() + 20000) | numberFormatter }}+</p>
+          </div>
+          <div class="stat-card">
+            <h3>Total Resource Cost</h3>
+            <p>${{ (staticsService.totalResourceCost() + 1000) | numberFormatter }}+</p>
+          </div>
+        </div>
+      </section>
+      
+  </div>
+  

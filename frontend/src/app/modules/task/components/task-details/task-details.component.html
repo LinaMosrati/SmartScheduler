@@ -1,0 +1,41 @@
+<div class="task-details">
+    <h2 mat-dialog-title >{{ activeTaskService.activeTask()?.name }}</h2>
+    <mat-dialog-content>
+    <p *ngIf="activeTaskService.activeTask()?.description"><strong>Description:</strong> {{ activeTaskService.activeTask()?.description }}</p>
+    <p><strong>Priority:</strong> {{ activeTaskService.activeTask()?.priority }}</p>
+    <p><strong>Status:</strong> {{ activeTaskService.activeTask()?.status }}</p>
+    <p><strong>Start Date:</strong> {{ activeTaskService.activeTask()?.startDate | date }}</p>
+    <p><strong>End Date:</strong> {{ activeTaskService.activeTask()?.endDate | date }}</p>
+    <p><strong>Cost:</strong> {{ activeTaskService.activeTask()?.cost | currency }}</p>
+    <p *ngIf="activeTaskService.activeTask()?.userId" ><strong>Assigned To:</strong>  <img style="width: 40px;border-radius: 50%;" [src]="activeTaskService.User()?.user?.image" [alt]="activeTaskService.User()?.user?.lastName" [title]="getUserName()"> </p>
+
+    <h3 *ngIf="getResources().length > 0">Resources</h3>
+    <div *ngIf="getResources().length > 0" class="selected-items">
+        <h4>Selected Resources:</h4>
+        <ul>
+          <li *ngFor="let resource of getResources()">{{ resource.name }} {{ resource.cost | currency }}</li>
+        </ul>
+    </div>
+    
+    <ng-container *ngIf="activeTaskService.subTasks().length > 0" >
+    <h3>Subtasks</h3>
+    <div *ngFor="let subTask of activeTaskService.subTasks()" class="subtask">
+      <div>
+        <ng-container *ngIf="subTask.userId"> <img style="width: 30px;border-radius: 50%;margin-right: 5px;" [src]="getUserImage(subTask.userId)" [alt]="getUserName2(subTask.userId)" [title]="getUserName2(subTask.userId)"> </ng-container>
+        <strong>{{ subTask.name }}</strong> - {{ subTask.status }}
+        <p>{{ subTask.description }}</p>
+      </div>
+      <div>
+        <button *ngIf="canEdit" (click)="editSubTask(subTask)" mat-raised-button color="primary">Edit</button>
+        <button *ngIf="canEdit" (click)="deleteSubTask(subTask)" mat-raised-button color="warn">Delete</button>
+      </div>
+    </div>
+    </ng-container>
+  
+    <button *ngIf="canEdit" (click)="addSubTask()">Add Subtask</button>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="closeDialog()">Return</button>
+</mat-dialog-actions>
+  </div>
+  

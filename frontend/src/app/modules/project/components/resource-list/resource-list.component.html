@@ -1,0 +1,14 @@
+<div class="resource-list">
+  <div class="resource-card" *ngFor="let resource of ActiveProjectService.resources()" (click)="onEditResource(resource)">
+    <h3>{{ resource.name }}</h3>
+    <p><strong>Type:</strong> {{ resource.type | titlecase }}</p>
+    <p>
+      <strong>Status:</strong>
+      <span [style.color]="resource.availability ? 'green' : 'red'">
+        {{ resource.availability ? 'Available' : 'Unavailable' }}
+      </span>
+    </p>
+    <p><strong>Details:</strong> {{ resource.details || 'No details provided' }}</p>
+    <p><strong>Cost:</strong> {{ resource.cost | currency }}</p>
+  </div>
+</div>

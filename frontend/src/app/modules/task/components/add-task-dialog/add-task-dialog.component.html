@@ -1,0 +1,89 @@
+<h2 mat-dialog-title class="dialog-title">Add Task</h2>
+<mat-dialog-content class="dialog-content">
+  <!-- Task Details Section -->
+  <mat-card class="form-section">
+    <mat-card-header>
+      <mat-card-title>Task Details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Task Name</mat-label>
+        <input matInput [(ngModel)]="task.name" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="task.description"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Schedule Section -->
+  <mat-card class="form-section">
+    <mat-card-header>
+      <mat-card-title>Schedule</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="startPicker" [(ngModel)]="task.startDate" />
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="endPicker" [(ngModel)]="task.endDate" />
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Estimated Time (hours)</mat-label>
+        <input matInput type="number" [(ngModel)]="task.estimatedTime" />
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Cost Section -->
+  <mat-card class="form-section">
+    <mat-card-header>
+      <mat-card-title>Cost</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Cost</mat-label>
+        <input matInput type="number" [(ngModel)]="task.cost" />
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Dependencies Section -->
+  <mat-card class="form-section">
+    <mat-card-header>
+      <mat-card-title>Dependencies</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <button mat-raised-button color="primary" (click)="openDependentTasksDialog()">Select Dependent Tasks</button>
+      <div *ngIf="dependentTasks.length > 0" class="selected-items">
+        <h4>Selected Dependent Tasks:</h4>
+        <ul>
+          <li *ngFor="let task of dependentTasks">{{ task.name }}</li>
+        </ul>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="openResourcesDialog()">Select Resources</button>
+      <div *ngIf="selectedResources.length > 0" class="selected-items">
+        <h4>Selected Resources:</h4>
+        <ul>
+          <li *ngFor="let resource of selectedResources">{{ resource.name }}</li>
+        </ul>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button type="submit" mat-raised-button color="primary" (click)="onSave()" >Save Task</button>
+</mat-dialog-actions>

@@ -20,7 +20,7 @@ export class AddProjectComponent {
       budget: [0, [Validators.required, Validators.min(0)]],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-    }, { Validators: [this.validateDates] });
+    }, { validators: [this.validateDates] });
   }
 
   // Custom validator to ensure the end date is after the start date
@@ -28,8 +28,6 @@ export class AddProjectComponent {
     const endDateField = group.get('endDate');
     const startDate = new Date(group.get('startDate')?.value);
     const endDate = new Date(group.get('endDate')?.value);
-    console.log('Start date:', startDate);
-    console.log('End date:', endDate);
     if ( endDateField && endDate < startDate) {
       console.log('End date is before start date');
       endDateField.setErrors({ endDateBeforeStartDate: true });

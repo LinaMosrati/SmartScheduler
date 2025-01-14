@@ -7,6 +7,9 @@
     </span>
     <span class="spacer"></span>
 
+    <!-- home page -->
+    <button mat-button routerLink="/" routerLinkActive="active">Home</button>
+
     <!-- Show Login and Register for unauthenticated users -->
     <ng-container *ngIf="!currentUser()">
       <button mat-button routerLink="/signup" routerLinkActive="active">Register</button>
@@ -15,18 +18,17 @@
 
     <!-- Show dynamic options for authenticated users -->
     <ng-container *ngIf="currentUser()">
+      <button  mat-button routerLink="/project" routerLinkActive="active">
+        Show Projects
+      </button>
+      <button mat-button routerLink="/dashboard" routerLinkActive="active">Dashboard</button>
       <!-- Admin-specific button -->
        <ng-container *ngIf="isAdmin()">
-      <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
       <button mat-button routerLink="/admin" routerLinkActive="active">User List</button>
     </ng-container>
       <!-- User-specific button -->
     <ng-container *ngIf="isUser()">
-      <button  mat-button routerLink="/project" routerLinkActive="active">
-        Show Projects
-      </button>
-      <button mat-button routerLink="/employee" routerLinkActive="active">Dashboard</button>
-      <button mat-button routerLink="/employee/task" routerLinkActive="active">Post Task</button>
+      
     </ng-container>
       <!-- User profile menu -->
       <button

@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Add SubTask</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="onSubmit()" #subTaskForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>SubTask Name</mat-label>
+      <input matInput placeholder="Enter subtask name" [(ngModel)]="subTask.name" name="name" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        placeholder="Enter description (optional)"
+        [(ngModel)]="subTask.description"
+        name="description"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="subTask.status" name="status" required>
+        <mat-option *ngFor="let status of statuses" [value]="status">
+            {{ status }}
+          </mat-option>
+        
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button [disabled]="!subTaskForm.form.valid" (click)="onSubmit()">Add</button>
+</mat-dialog-actions>

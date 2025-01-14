@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Select Resources</h2>
+<mat-dialog-content>
+  <mat-selection-list [(ngModel)]="selectedResources">
+    <mat-list-option *ngFor="let resource of availableResources" [value]="resource">
+      {{ resource.name }}
+    </mat-list-option>
+  </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="selectedResources">Select</button>
+</mat-dialog-actions>

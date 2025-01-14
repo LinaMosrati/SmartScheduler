@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Edit SubTask</h2>
+
+<mat-dialog-content>
+  <form #editSubTaskForm="ngForm">
+    <!-- SubTask Name -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>SubTask Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="subTask.name"
+        name="name"
+        required
+      />
+    </mat-form-field>
+
+    <!-- SubTask Description -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="subTask.description"
+        name="description"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- SubTask Status -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="subTask.status" name="status">
+        <mat-option *ngFor="let status of statuses" [value]="status">
+            {{ status }}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Assign User -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Assign User</mat-label>
+      <mat-select
+        [(ngModel)]="subTask.userId"
+        name="userId"
+      >
+      <mat-option [value]="null">Unassigned</mat-option>
+        <mat-option
+          *ngFor="let user of availableUsers"
+          [value]="user.user?.id"
+        >
+        <img [src]="user.user?.image" [alt]="user.user?.lastName" style="width: 20px;border-radius: 50%;" >
+          {{ user.user?.lastName }} {{ user.user?.firstName }} <span [ngStyle]="{'color': roleColors[user.role]}" > {{user.role}} </span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    [disabled]="editSubTaskForm.form.invalid"
+    color="primary"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

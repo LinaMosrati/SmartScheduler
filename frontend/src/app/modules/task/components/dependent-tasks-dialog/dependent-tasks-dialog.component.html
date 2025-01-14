@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Select Dependent Tasks</h2>
+<mat-dialog-content>
+  <mat-selection-list [(ngModel)]="selectedTasks">
+    <mat-list-option *ngFor="let task of availableTasks" [value]="task">
+      {{ task.name }}
+    </mat-list-option>
+  </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCanceled()" >Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSelectedTasks()" >Select</button>
+</mat-dialog-actions>

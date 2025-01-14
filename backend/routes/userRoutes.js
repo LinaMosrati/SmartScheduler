@@ -14,6 +14,6 @@ router.delete('/:userId', authenticateToken, roleMiddleware('admin'), userContro
 
 router.put('/:userId/image', authenticateToken, privilegeOrHisOwnData, multerUser.single('image'), userController.uploadImage);
 
-router.get('/project/:projectId', authenticateToken, privilegeOrHisOwnData, userController.getUsersByProjectId);
+router.get('/project/:projectId', authenticateToken, userController.getUsersByProjectId);
 
 module.exports = router;

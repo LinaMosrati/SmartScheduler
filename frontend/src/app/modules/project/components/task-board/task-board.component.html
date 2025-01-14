@@ -1,0 +1,20 @@
+<div class="task-board">
+    <div class="task-column" *ngFor="let column of taskColumns">
+      <h3>{{ column.title }}</h3>
+      <div class="task-card" *ngFor="let task of sortTasksByPriority(tasksByStatus(column.status)) ">
+        <div
+            class="task"
+            [ngStyle]="{ 'background-color': getTaskPriorityColor(task) }"
+            (click)="onTaskClick(task)"
+            >
+            {{ task.name }} 
+            <ng-container *ngIf="task.userId" >- <img style="width: 30px;border-radius: 50%;margin-right: 5px;" [src]="getUserImage(task.userId)" [alt]="getUserName2(task.userId)" [title]="getUserName2(task.userId)"></ng-container>
+            <div class="task-actions" *ngIf="canEdit">
+            <i class="material-icons" (click)="onTaskEdit($event,task)">edit</i>
+            <i class="material-icons" (click)="onDeleteTask($event,task)">delete</i>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  

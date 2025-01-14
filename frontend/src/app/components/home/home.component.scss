@@ -1,0 +1,54 @@
+.home-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+
+    img {
+      border-radius: 50%;
+      margin-bottom: 20px;
+      width: 300px;
+    }
+  
+    .welcome-section, .description-section, .statistics-section {
+      margin-bottom: 40px;
+      text-align: center;
+  
+      h1, h2 {
+        color: #3f51b5;
+      }
+  
+      p {
+        font-size: 18px;
+      }
+    }
+  
+    .statistics-section {
+      .stat-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+  
+        .stat-card {
+          background-color: #3b2d38;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          text-align: center;
+          width: 200px;
+  
+          h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
+  
+          p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1976d2;
+          }
+        }
+      }
+    }
+  }
+  

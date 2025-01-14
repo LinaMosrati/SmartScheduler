@@ -1,0 +1,131 @@
+<div class="project-container">
+  <!-- Project Name -->
+  <h1 class="project-title">{{ ActiveProjectService.activeProject()?.name }} 
+     
+    <button *ngIf="!isOwner()" mat-fab extended color="primary" (click)="leaveProject()">
+      <mat-icon>logout</mat-icon>
+      Leave Project
+    </button>
+  </h1>
+
+  <!-- Statistics Section -->
+  <div class="statistics-section">
+    <!-- details section -->
+    <mat-card class="stat-card">
+      <mat-card-title>Project Details</mat-card-title>
+      <mat-card-content>
+        <p><strong>Description:</strong> {{ ActiveProjectService.activeProject()?.description }}</p>
+        <p>
+          <strong>Status:</strong>
+          <span 
+            [ngStyle]="{ 'color': getStatusColor(ActiveProjectService.activeProject()?.status) }">
+            {{ ActiveProjectService.activeProject()?.status }}
+          </span>
+        </p>
+        <p>
+          <strong>Budget:</strong> {{ ActiveProjectService.activeProject()?.budget | currency }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-title>Project Timeline</mat-card-title>
+      <mat-card-content>
+        <p><strong>Start Date:</strong> {{ ActiveProjectService.activeProject()?.startDate | date }}</p>
+        <p><strong>End Date:</strong> {{ ActiveProjectService.activeProject()?.endDate | date }}</p>
+        <p *ngIf="ActiveProjectService.statics()?.daysPassed && ActiveProjectService.statics()!.daysPassed < 0"><strong>Days To Start:</strong> {{ ActiveProjectService.statics()?.daysPassed ? (ActiveProjectService.statics()!.daysPassed * -1) : 0 }}</p>
+        <p *ngIf="ActiveProjectService.statics()?.daysPassed && ActiveProjectService.statics()!.daysPassed >= 0"><strong>Days Passed:</strong> {{ ActiveProjectService.statics()?.daysPassed }}</p>
+        <p><strong>Days Remaining:</strong> {{ ActiveProjectService.statics()?.daysRemaining }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-title>Users</mat-card-title>
+      <mat-card-content>
+        <p><strong>Total Users:</strong> {{ ActiveProjectService.members().length }}</p>
+        <div *ngFor="let role of ActiveProjectService.statics()?.roleCount | keyvalue">
+          <p><strong>{{ role.key }}:</strong> {{ role.value }}            
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-title>Tasks</mat-card-title>
+      <mat-card-content>
+        <p><strong>Total Tasks:</strong> {{ ActiveProjectService.tasks().length }}</p>
+        <p><strong>Tasks Completed:</strong> {{ ActiveProjectService.statics()?.completedTasks }}</p>
+        <p><strong>Tasks In Progress:</strong> {{ ActiveProjectService.statics()?.inProgressTasks }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-title>Resources</mat-card-title>
+      <mat-card-content>
+        <p><strong>Total Resources:</strong> {{ ActiveProjectService.resources().length }}</p>
+        <p><strong>Total Cost:</strong> {{ ActiveProjectService.statics()?.totalResourceCost | currency }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Members Section -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Project Members
+        <small style="margin-left: 4px;">( {{ ActiveProjectService.members().length }} member(s) )</small>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="members-container">
+      <div 
+      class="member-card" 
+      *ngFor="let member of ActiveProjectService.members()"
+      >
+        <app-member-card [member]="member.user" [role]="member.role" [color]="roleColors[member.role]" [canEdit]="editAccess()" [projectMemberId]="member.id"></app-member-card>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <button *ngIf="editAccess()" class="add-btn" mat-raised-button color="primary" (click)="openRoleModal()">Invite Member</button>
+
+  <!-- Tasks Section -->
+  <ng-container *ngIf="ActiveProjectService.tasks().length != 0">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Tasks
+          <small style="margin-left: 4px;">( {{ ActiveProjectService.tasks().length }} task(s) )</small>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-task-board [tasks]="ActiveProjectService.tasks()" [canEdit]="lowerAccess()" ></app-task-board>
+    </mat-expansion-panel>
+  </ng-container>
+  <button *ngIf="lowerAccess()" class="add-btn" mat-raised-button color="primary" (click)="addTask()">
+    Add Task
+  </button>
+
+  <!-- Resources Section -->
+  <ng-container *ngIf="ActiveProjectService.resources().length != 0">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Resources
+          <small style="margin-left: 4px;">( {{ ActiveProjectService.resources().length }} resource(s) )</small>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-resource-list [canEdit]="editAccess()" ></app-resource-list>
+    </mat-expansion-panel>
+  </ng-container>
+  <button *ngIf="editAccess()" class="add-btn" mat-raised-button color="primary" (click)="addResource()">
+    Add Resource
+  </button>
+</div>
+<button
+  *ngIf="editAccess()"
+  mat-fab
+  class="floating-action-button"
+  color="primary"
+  (click)="openDialog()"
+>
+  <mat-icon>menu</mat-icon>
+</button>

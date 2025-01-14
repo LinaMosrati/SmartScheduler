@@ -18,6 +18,20 @@ import { ForgotPasswordComponent } from './modules/auth/components/forgot-passwo
 import { NewPasswordComponent } from './modules/auth/components/new-password/new-password.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { TaskFilterPipe } from './core/pipes/task-filter.pipe';
+import { ProjectInviteComponent } from './modules/project-member/components/project-invite/project-invite.component';
+import { EditProjectMemberComponent } from './modules/project-member/components/edit-project-member/edit-project-member.component';
+import { AddTaskDialogComponent } from './modules/task/components/add-task-dialog/add-task-dialog.component';
+import { ResourcesDialogComponent } from './modules/task/components/resources-dialog/resources-dialog.component';
+import { DependentTasksDialogComponent } from './modules/task/components/dependent-tasks-dialog/dependent-tasks-dialog.component';
+import { EditTaskDialogComponent } from './modules/task/components/edit-task-dialog/edit-task-dialog.component';
+import { TaskDetailsComponent } from './modules/task/components/task-details/task-details.component';
+import { AddSubTaskDialogComponent } from './modules/sub-task/components/add-sub-task-dialog/add-sub-task-dialog.component';
+import { EditSubTaskDialogComponent } from './modules/sub-task/components/edit-sub-task-dialog/edit-sub-task-dialog.component';
+import { DetailsSubTaskDialogComponent } from './modules/sub-task/components/details-sub-task-dialog/details-sub-task-dialog.component';
+import { EditResourceDialogComponent } from './modules/resource/components/edit-resource-dialog/edit-resource-dialog.component';
+import { AddResourceDialogComponent } from './modules/resource/components/add-resource-dialog/add-resource-dialog.component';
+import { NumberFormatterPipe } from './core/pipes/number-formatter.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +43,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ResendValidationEmailComponent,
     ValidateEmailComponent,
     ForgotPasswordComponent,
-    NewPasswordComponent
+    NewPasswordComponent,
+    TaskFilterPipe,
+    ProjectInviteComponent,
+    EditProjectMemberComponent,
+    AddTaskDialogComponent,
+    DependentTasksDialogComponent,
+    ResourcesDialogComponent,
+    EditTaskDialogComponent,
+    TaskDetailsComponent,
+    AddSubTaskDialogComponent,
+    EditSubTaskDialogComponent,
+    DetailsSubTaskDialogComponent,
+    AddResourceDialogComponent,
+    EditResourceDialogComponent,
+    NumberFormatterPipe
   ],
   imports: [
     BrowserModule,

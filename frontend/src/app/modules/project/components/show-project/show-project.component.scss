@@ -1,0 +1,86 @@
+.project-container {
+  padding: 16px;
+}
+
+.project-title {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.statistics-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #3b2d38;
+}
+
+.stat-card mat-card-title {
+  font-weight: bold;
+  color: #1976d2;
+  margin-bottom: 8px;
+}
+
+.members-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 8px;
+  background-color: #3b2d38;
+  border-radius: 8px;
+}
+
+.member-card {
+  min-width: 200px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #161215;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.member-card:hover {
+  transform: scale(1.02);
+}
+
+mat-expansion-panel {
+  margin-bottom: 16px;
+}
+
+.add-btn {
+  margin-top: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.edit-member-dialog {
+  .mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mat-dialog-actions {
+    justify-content: space-between;
+  }
+}
+
+.floating-action-button {
+  width: 50px;
+  height: 50px;
+  position: fixed; /* Makes the button fixed in the viewport */
+  bottom: 16px;    /* Distance from the bottom of the page */
+  right: 16px;      /* Distance from the left of the page */
+  z-index: 1000;   /* Ensure it's above other elements */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Optional: Add some shadow for better visibility */
+}
+
+

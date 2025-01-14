@@ -1,0 +1,37 @@
+<div class="invite-container">
+    <mat-card *ngIf="isLoading" class="loading-card">
+      <div class="loading-spinner">
+        <mat-spinner></mat-spinner>
+        <p>Loading invitation...</p>
+      </div>
+    </mat-card>
+  
+    <mat-card *ngIf="!isLoading" class="invite-card">
+      <div *ngIf="isExpired" class="expired-message">
+        <mat-card-header>
+          <mat-card-title class="expired-title">Invitation Link Expired</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            The invitation link has expired. Please contact the project owner for a
+            new invitation.
+          </p>
+        </mat-card-content>
+      </div>
+  
+      <div *ngIf="!isExpired" class="invitation-message">
+        <mat-card-header>
+          <mat-card-title class="invite-title">You're Invited to Join the Project!</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p><strong>Project Name:</strong> {{ projectData?.name }}</p>
+          <p><strong>Description:</strong> {{ projectData?.description }}</p>
+          <p><strong>Role:</strong> <span [ngStyle]="{ 'color': role ? roleColors[role] : 'inherit' }"> {{ role || 'N/A' }} </span></p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-raised-button color="primary" (click)="joinProject()">Join Project</button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+  
